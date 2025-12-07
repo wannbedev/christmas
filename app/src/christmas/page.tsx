@@ -214,6 +214,7 @@ export default function ChristmasCelebration() {
       >
         🎊
       </div>
+      {""}
     </div>
   );
 }
