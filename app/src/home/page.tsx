@@ -17,8 +17,8 @@ export default function Home() {
   const [usedMessages, setUsedMessages] = useState<number[]>([]);
   const [currentMessage, setCurrentMessage] = useState({
     emoji: "😢",
-    title: "เสียดายจัง",
-    text: "เธอไม่เชื่อเรื่องซานต้าหรอ?",
+    title: "What a shame",
+    text: "Don't you believe in Santa?",
   });
   const [gifs, setGifs] = useState({
     santa: "https://media.tenor.com/WOb98MAf-fAAAAAM/merry-christmas.gif",
@@ -36,13 +36,16 @@ export default function Home() {
         const apiKey = process.env.NEXT_PUBLIC_GIPHY_API_KEY || "YOUR_API_KEY";
         const gf = new GiphyFetch(apiKey);
 
+        // สุ่ม offset เพื่อให้ได้ GIF แบบสุ่ม
+        const getRandomOffset = () => Math.floor(Math.random() * 50);
+
         const [santa, thinking, checking, celebration, sad] = await Promise.all(
           [
-            gf.search("santa claus christmas", { limit: 1 }),
-            gf.search("santa claus thinking", { limit: 1 }),
-            gf.search("santa checking list", { limit: 1 }),
-            gf.search("merry christmas celebration", { limit: 1 }),
-            gf.search("sad santa claus", { limit: 1 }),
+            gf.search("santa claus christmas", { limit: 1, offset: getRandomOffset() }),
+            gf.search("santa claus thinking", { limit: 1, offset: getRandomOffset() }),
+            gf.search("santa checking list", { limit: 1, offset: getRandomOffset() }),
+            gf.search("merry christmas celebration", { limit: 1, offset: getRandomOffset() }),
+            gf.search("sad santa claus", { limit: 1, offset: getRandomOffset() }),
           ]
         );
 
@@ -62,57 +65,57 @@ export default function Home() {
   }, []);
 
   const persuasionMessages = [
-    { emoji: "😢", title: "เสียดายจัง", text: "เธอไม่เชื่อเรื่องซานต้าหรอ?" },
-    { emoji: "🥺", title: "โปรดเถอะนะ", text: "ลองขอพรดูสิ จะไม่เสียหายหรอก!" },
+    { emoji: "😢", title: "What a shame", text: "Don't you believe in Santa?" },
+    { emoji: "🥺", title: "Please!", text: "Just try making a wish! It won't hurt!" },
     {
       emoji: "🎅",
-      title: "ซานต้าเศร้าแล้ว",
-      text: "ซานต้ารอให้เธอขอของขวัญอยู่นะ...",
+      title: "Santa is sad",
+      text: "Santa is waiting for you to ask for a gift...",
     },
     {
       emoji: "✨",
-      title: "แค่ลองเท่านั้นเอง",
-      text: "ถ้าไม่ชอบก็ไม่เอาก็ได้นะ แต่ลองขอดูก่อนสิ!",
+      title: "Just give it a try",
+      text: "If you don't like it, you don't have to take it. But try asking first!",
     },
     {
       emoji: "🎁",
-      title: "ของขวัญรออยู่!",
-      text: "มีของขวัญดีๆ รออยู่นะ ไม่ขอจริงๆ หรอ?",
+      title: "Gifts are waiting!",
+      text: "There are nice gifts waiting for you. Won't you really ask?",
     },
     {
       emoji: "😭",
-      title: "อย่าทำแบบนี้เลย",
-      text: "คริสต์มาสปีนี้อาจจะพิเศษนะ ลองขอดูสิ!",
+      title: "Don't do this",
+      text: "This Christmas might be special. Just give it a try!",
     },
     {
       emoji: "🤗",
-      title: "มาเถอะนะ",
-      text: "ทุกคนก็ขอกันหมดแล้ว เธอจะไม่ขอเหรอ?",
+      title: "Come on",
+      text: "Everyone else is asking. Won't you join them?",
     },
     {
       emoji: "🌟",
-      title: "โอกาสพิเศษนะ",
-      text: "นี่คือโอกาสที่ดีนะ อาจจะเป็นครั้งสุดท้ายก็ได้!",
+      title: "Special opportunity",
+      text: "This is a great chance! It might be the last time!",
     },
     {
       emoji: "😔",
-      title: "ผิดหวังจัง",
-      text: "ซานต้าบินมาไกลขนาดนี้เลยนะ ขออะไรสักอย่างสิ!",
+      title: "So disappointed",
+      text: "Santa flew all this way! Ask for something!",
     },
     {
       emoji: "🎄",
-      title: "คริสต์มาสก็มาแล้ว",
-      text: "วันนี้คือวันพิเศษนะ อย่าพลาดโอกาสดีๆ เลย!",
+      title: "Christmas is here",
+      text: "Today is a special day. Don't miss this great opportunity!",
     },
     {
       emoji: "💝",
-      title: "แค่ขอเท่านั้นเอง",
-      text: "ไม่ต้องกลัวหรอก แค่บอกความปรารถนาเท่านั้นเอง!",
+      title: "Just ask",
+      text: "Don't be afraid! Just tell us your wish!",
     },
     {
       emoji: "🦌",
-      title: "กวางเรนเดียร์รอแล้ว",
-      text: "กวางลากเลื่อนรออยู่ข้างนอกแล้วนะ จะไม่ขอจริงๆ หรอ?",
+      title: "Reindeer are waiting",
+      text: "The reindeer with the sleigh are waiting outside. Won't you really ask?",
     },
   ];
 
@@ -168,23 +171,23 @@ export default function Home() {
     const messages = [
       {
         emoji: "🤔",
-        title: "แน่ใจนะ?",
-        text: "แน่ใจว่าทำความดีแล้วจริงๆ หรือ?",
+        title: "Are you sure?",
+        text: "Are you sure you've really done good deeds?",
       },
       {
         emoji: "🧐",
-        title: "จริงๆ นะ?",
-        text: "ไม่ได้โกหกใช่มั้ย? ทำความดีจริงๆ?",
+        title: "Really?",
+        text: "You're not lying, right? Did you really do good deeds?",
       },
       {
         emoji: "😏",
-        title: "อืมมม...",
-        text: "ซานต้ารู้นะถ้าโกหก... ทำความดีจริงๆ หรอ?",
+        title: "Hmm...",
+        text: "Santa knows if you're lying... Did you really do good deeds?",
       },
       {
         emoji: "🕵️",
-        title: "ตรวจสอบอีกครั้ง!",
-        text: "ซานต้ามีรายชื่อคนดีคนเลว... แน่ใจ 100% นะ?",
+        title: "Double checking!",
+        text: "Santa has a list of naughty and nice... Are you 100% sure?",
       },
     ];
     return messages[confirmCount - 1] || messages[0];
@@ -202,44 +205,175 @@ export default function Home() {
 
   return (
     <div
-      className={`min-h-screen transition-colors duration-300 ${
+      className={`min-h-screen flex items-center justify-center p-4 transition-colors duration-500 overflow-hidden relative ${
         isDarkMode
-          ? "bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900"
-          : "bg-gradient-to-br from-red-50 via-green-50 to-red-100"
+          ? "bg-gradient-to-br from-slate-900 via-red-950 to-green-950"
+          : "bg-gradient-to-br from-red-100 via-pink-100 to-green-100"
       }`}
     >
-      {/* Header Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h1
-            className={`text-6xl font-bold mb-4 transition-colors duration-300 ${
-              isDarkMode ? "text-red-400" : "text-red-600"
-            }`}
-          >
-            🎅 สวัสดีวันคริสต์มาสต์ 🎄
-          </h1>
-          <p
-            className={`text-2xl font-semibold mb-4 transition-colors duration-300 ${
-              isDarkMode ? "text-green-400" : "text-green-700"
-            }`}
-          >
-            เฮ้! พวกเรามาร่วมขอของจากซานต้ากัน
-          </p>
+      {/* Animated background decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-5 text-4xl animate-bounce opacity-40">
+          ❄️
         </div>
+        <div
+          className="absolute top-20 right-10 text-3xl animate-pulse opacity-30"
+          style={{ animationDelay: "0.5s" }}
+        >
+          ⭐
+        </div>
+        <div
+          className="absolute bottom-20 left-10 text-5xl animate-bounce opacity-30"
+          style={{ animationDelay: "1s" }}
+        >
+          🎄
+        </div>
+        <div
+          className="absolute bottom-32 right-8 text-4xl animate-pulse opacity-40"
+          style={{ animationDelay: "1.5s" }}
+        >
+          🎁
+        </div>
+        <div
+          className="absolute top-1/3 left-1/4 text-3xl animate-bounce opacity-20"
+          style={{ animationDelay: "0.8s" }}
+        >
+          ✨
+        </div>
+        <div
+          className="absolute top-2/3 right-1/4 text-3xl animate-pulse opacity-25"
+          style={{ animationDelay: "1.2s" }}
+        >
+          🌟
+        </div>
+      </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
-          <button
-            onClick={() => setShowRequestModal(true)}
-            className="px-8 py-4 rounded-xl border-2 border-green-400 bg-green-200 hover:bg-green-300 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-          >
-            <span className="text-lg font-semibold text-green-900">ขอ 🎁</span>
-          </button>
-          <button
-            onClick={handleNoClick}
-            className="px-8 py-4 rounded-xl border-2 border-gray-400 bg-gray-200 hover:bg-gray-300 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-          >
-            <span className="text-lg font-semibold text-gray-900">ไม่ขอ</span>
-          </button>
+      {/* Main Card */}
+      <div className="relative w-full max-w-md z-10">
+        <div
+          className={`rounded-3xl shadow-2xl backdrop-blur-lg transition-all duration-500 overflow-hidden ${
+            isDarkMode
+              ? "bg-gradient-to-br from-gray-800/90 to-gray-900/90 border-2 border-red-500/30"
+              : "bg-white/95 border-2 border-red-300/50"
+          }`}
+          style={{
+            boxShadow: isDarkMode
+              ? "0 25px 50px -12px rgba(239, 68, 68, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)"
+              : "0 25px 50px -12px rgba(220, 38, 38, 0.3), 0 0 20px rgba(21, 128, 61, 0.2)",
+          }}
+        >
+          {/* Card Header */}
+          <div className="relative pt-8 pb-6 px-6">
+            <div className="text-center">
+              <div className="inline-block mb-4 relative">
+                <div className="absolute inset-0 bg-red-500/30 blur-3xl "></div>
+                <img
+                  src={gifs.santa}
+                  alt="Santa"
+                  className="w-28 h-28 mx-auto   relative z-10 "
+                />
+              </div>
+              <h1
+                className={`text-4xl font-bold mb-3 transition-colors duration-300 leading-tight whitespace-nowrap ${
+                  isDarkMode ? "text-red-400" : "text-red-600"
+                }`}
+                style={{
+                  textShadow: isDarkMode
+                    ? "0 0 20px rgba(248,113,113,0.6)"
+                    : "0 0 15px rgba(220,38,38,0.4)",
+                }}
+              >
+                Merry Christmas
+              </h1>
+              <div className="text-5xl mb-3">🎄</div>
+              <p
+                className={`text-lg font-medium transition-colors duration-300 px-4 ${
+                  isDarkMode ? "text-green-300" : "text-green-700"
+                }`}
+              >
+                Hey! Let's ask Santa for gifts together
+              </p>
+            </div>
+          </div>
+
+          {/* Divider with icons */}
+          <div className="flex justify-center items-center gap-3 py-4 px-6">
+            <div
+              className={`h-px flex-1 ${
+                isDarkMode
+                  ? "bg-gradient-to-r from-transparent via-red-500/50 to-transparent"
+                  : "bg-gradient-to-r from-transparent via-red-300 to-transparent"
+              }`}
+            ></div>
+            <div className="flex gap-2 text-2xl">
+              <span className="animate-pulse">✨</span>
+              <span
+                className="animate-bounce"
+                style={{ animationDelay: "0.2s" }}
+              >
+                🎁
+              </span>
+              <span
+                className="animate-pulse"
+                style={{ animationDelay: "0.4s" }}
+              >
+                ✨
+              </span>
+            </div>
+            <div
+              className={`h-px flex-1 ${
+                isDarkMode
+                  ? "bg-gradient-to-r from-transparent via-red-500/50 to-transparent"
+                  : "bg-gradient-to-r from-transparent via-red-300 to-transparent"
+              }`}
+            ></div>
+          </div>
+
+          {/* Card Body - Buttons */}
+          <div className="px-6 pb-8 space-y-4">
+            <button
+              onClick={() => setShowRequestModal(true)}
+              className={`group relative w-full py-5 rounded-2xl font-bold text-xl overflow-hidden transition-all duration-300 transform active:scale-95 ${
+                isDarkMode
+                  ? "bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white shadow-lg shadow-green-500/50"
+                  : "bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-white shadow-xl shadow-green-500/40"
+              }`}
+              style={{
+                boxShadow: "0 10px 30px -5px rgba(34, 197, 94, 0.5)",
+              }}
+            >
+              <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              <div className="relative flex items-center justify-center gap-2 whitespace-nowrap">
+                <span>Ask for Gift</span>
+                <span className="text-2xl animate-bounce">🎁</span>
+              </div>
+              <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+            </button>
+
+            <button
+              onClick={handleNoClick}
+              className={`group relative w-full py-5 rounded-2xl font-bold text-xl overflow-hidden transition-all duration-300 transform active:scale-95 ${
+                isDarkMode
+                  ? "bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-gray-200 shadow-lg shadow-gray-700/50"
+                  : "bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-300 hover:to-gray-400 text-white shadow-xl shadow-gray-400/40"
+              }`}
+            >
+              <div className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              <div className="relative flex items-center justify-center gap-2 whitespace-nowrap">
+                <span>No Thanks</span>
+                <span className="text-2xl">😔</span>
+              </div>
+            </button>
+          </div>
+
+          {/* Card Footer */}
+          <div
+            className={`py-4 text-center text-sm ${
+              isDarkMode
+                ? "bg-gradient-to-r from-red-900/30 to-green-900/30 text-gray-400"
+                : "bg-gradient-to-r from-red-50 to-green-50 text-gray-600"
+            }`}
+          ></div>
         </div>
       </div>
 
@@ -259,22 +393,22 @@ export default function Home() {
             />
           </div>
           <h2
-            className={`text-3xl font-bold mb-4 ${
+            className={`text-3xl font-bold mb-4 whitespace-nowrap ${
               isDarkMode ? "text-red-400" : "text-red-600"
             }`}
           >
-            ขอของจากซานต้า
+            Ask Santa for a Gift
           </h2>
           <p
             className={`mb-6 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
           >
-            ถ้าขออะไรกับซานต้าได้ อยากจะขออะไร?
+            If you could ask Santa for anything, what would it be?
           </p>
           <div className="mb-6">
             <textarea
               value={wishText}
               onChange={(e) => setWishText(e.target.value)}
-              placeholder="พิมพ์ความปรารถนาของคุณที่นี่..."
+              placeholder="Type your wish here..."
               className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none min-h-[100px] ${
                 isDarkMode
                   ? "bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-400"
@@ -291,9 +425,9 @@ export default function Home() {
             </button>
             <button
               onClick={handleRequestSubmit}
-              className="flex-1 px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-semibold"
+              className="flex-1 px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-semibold whitespace-nowrap"
             >
-              ตกลง 🎁
+              Submit 🎁
             </button>
           </div>
         </div>
@@ -316,33 +450,33 @@ export default function Home() {
             />
           </div>
           <h2
-            className={`text-3xl font-bold mb-4 ${
+            className={`text-3xl font-bold mb-4 whitespace-nowrap ${
               isDarkMode ? "text-red-400" : "text-red-600"
             }`}
           >
-            เดี๋ยวก่อน!
+            Wait a minute!
           </h2>
           <p
             className={`mb-6 text-lg ${
               isDarkMode ? "text-gray-300" : "text-gray-600"
             }`}
           >
-            แต่ซานต้าจะให้ของกับคนที่ทำความดีนะ
+            But Santa only gives gifts to those who do good deeds.
             <br />
-            แล้ววันนี้ทำความดีหรือยัง?
+            Have you done any good deeds today?
           </p>
           <div className="flex gap-3">
             <button
               onClick={() => setShowGoodDeedModal(false)}
               className="flex-1 px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors font-semibold"
             >
-              ยังไม่ได้ทำ
+              Not yet
             </button>
             <button
               onClick={handleGoodDeedConfirm}
-              className="flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-semibold"
+              className="flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-semibold whitespace-nowrap"
             >
-              ทำแล้ว! ✨
+              Yes I have! ✨
             </button>
           </div>
         </div>
@@ -390,13 +524,13 @@ export default function Home() {
               }}
               className="flex-1 px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors font-semibold"
             >
-              ไม่แน่ใจ
+              Not sure
             </button>
             <button
               onClick={handleConfirmNext}
-              className="flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-semibold"
+              className="flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-semibold whitespace-nowrap"
             >
-              แน่ใจ! ✓
+              Yes I'm sure! ✓
             </button>
           </div>
         </div>
@@ -423,35 +557,35 @@ export default function Home() {
             />
           </div>
           <h2
-            className={`text-4xl font-bold mb-4 ${
+            className={`text-4xl font-bold mb-4 whitespace-nowrap ${
               isDarkMode ? "text-red-400" : "text-red-600"
             }`}
           >
-            ยินดีด้วย!
+            Congratulations!
           </h2>
           <p
             className={`text-xl mb-4 font-semibold ${
               isDarkMode ? "text-gray-200" : "text-gray-700"
             }`}
           >
-            หวังว่าซานต้าจะเอา
+            I hope Santa brings you
             <br />
             &quot;{wishText}&quot;
             <br />
-            มาให้นะ
+            this Christmas!
           </p>
           <p
             className={`text-lg mb-6 ${
               isDarkMode ? "text-green-400" : "text-green-700"
             }`}
           >
-            🎄 พร้อมกับเทศกาล Christmas 🎄
+            🎄 Merry Christmas 🎄
           </p>
           <button
             onClick={resetAll}
-            className="px-8 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-semibold text-lg"
+            className="px-8 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-semibold text-lg whitespace-nowrap"
           >
-            กลับหน้าแรก 🏠
+            Back to Home 🏠
           </button>
         </div>
       </Modal>
@@ -494,15 +628,15 @@ export default function Home() {
                 setShowNoModal(false);
                 setShowRequestModal(true);
               }}
-              className="flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-semibold"
+              className="flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-semibold whitespace-nowrap"
             >
-              โอเคๆ ขอดีกว่า! 🎁
+              Okay, I'll ask! 🎁
             </button>
             <button
               onClick={handleNoClick}
               className="flex-1 px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors font-semibold"
             >
-              ยังไม่ขอ
+              Still no
             </button>
           </div>
         </div>
